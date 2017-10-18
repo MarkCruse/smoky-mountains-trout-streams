@@ -13,10 +13,13 @@ obtain and screen the datasets
 
 
 ## Data
-[National Park Service - Great Smoky Mountains](https://grsm-nps.opendata.arcgis.com/)
+Each of these datasets were found on [National Park Service - Great Smoky Mountains](https://grsm-nps.opendata.arcgis.com/).
+
+My initial thought is to see if I can create a map showing locations where fish are released into the park's streams. How close are these locations to trails and parking.
 
 Downloaded Datasets
 * [GRSM Boundary](https://grsm-nps.opendata.arcgis.com/datasets/grsm-boundary#)
 * [GRSM CARTO MASK](https://grsm-nps.opendata.arcgis.com/datasets/grsm-carto-mask)
 * [GRSM Trails](https://grsm-nps.opendata.arcgis.com/datasets/256852d227c04006901dd211e36a61a7_0)
 * [Fish Distribution 2015](https://grsm-nps.opendata.arcgis.com/datasets/fish-distribution-2015)
+* [Parking](https://grsm-nps.opendata.arcgis.com/datasets/grsm-parking)
