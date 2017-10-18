@@ -22,4 +22,4 @@ Downloaded Datasets
 * [GRSM CARTO MASK](https://grsm-nps.opendata.arcgis.com/datasets/grsm-carto-mask)
 * [GRSM Trails](https://grsm-nps.opendata.arcgis.com/datasets/256852d227c04006901dd211e36a61a7_0)
 * [Fish Distribution 2015](https://grsm-nps.opendata.arcgis.com/datasets/fish-distribution-2015)
-* [Parking](https://grsm-nps.opendata.arcgis.com/datasets/grsm-parking)
+*  [Parking](https://grsm-nps.opendata.arcgis.com/datasets/grsm-parking)
