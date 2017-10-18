@@ -26,5 +26,10 @@ Wednesday, October 17
 * git status
 * git commit -m "add parking data  and zipped shapefiles"
 * git push -u origin master
-
-history 100 >>history.md | ouput last 100 to history.md  to append use 1 >
+* git status
+* git add README.md
+* git commit -m "updates 2 README file"
+* git add history.md
+* git commit -m "add history.md"
+        
+history 100 >>history.md | output last 100 to history.md
