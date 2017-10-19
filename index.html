@@ -134,7 +134,10 @@ Add detail here.
                  style: parkBoundsOptions
             }).addTo(map);
             L.geoJson(parkingData, {
-            style: parkingOptions,
+                pointToLayer: function(feature, latlng) {
+                    return L.marker(latlng, {icon: parkIcon}).addTo(map);
+                }
+       
             }).addTo(map);
 
         }
