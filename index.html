@@ -1,0 +1,145 @@
+<!doctype html>
+<!--
+Mark Cruse / Rich Donahue October 2017
+Add detail here.
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>2015 Fish Distribution in Smoky Mountains</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+    <style>
+        body,
+        #map {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            bottom: 0;
+            margin: 0;
+            padding: 0;
+            background: rgba(0,0,0,.75);        /*set the background to a black*/
+        }
+        .tooltip {  //override the default Leaflet styles for tooltip
+            color: white;
+            background: #295b97;
+            border: 0;
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script>
+        //** zoom options
+
+        var options = {
+            center: [35.627, -83.387],
+            zoom: 11,
+            minZoom: 9,
+            maxZoom: 16
+            //maxBounds: [
+            //    [33.911, -84.032],
+            //    [33.620, -84.772]
+        };
+
+        // create Leaflet map and apply options
+        var map = L.map('map', options);
+
+        // add labels & tiles to the map
+        map.createPane('labels');
+        map.getPane('labels').style.zIndex = 650;
+        map.getPane('labels').style.pointerEvents = 'none';
+
+       L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png', {
+                attribution: '©OpenStreetMap, ©CartoDB',
+                pane: 'labels'
+        }).addTo(map);
+
+        // create custom icon
+        var parkIcon = L.icon({
+            iconUrl: 'images/parking_icon.png',
+            iconSize: [20, 20], // size of the icon
+            });
+
+        // create marker object, pass custom icon as option, add to map
+        var marker = L.marker([35.627, -83.17], {icon: parkIcon}).addTo(map);
+
+        // **** Options for various layers - fish distribution, parkBounds, trails, parking
+
+        var fishOptions = {
+            fillOpacity: 0,
+            color: '#12b4ea',       //blue
+            opacity: 1,
+            weight: 3
+        };
+
+        var parkBoundsOptions = {
+            fillOpacity: .3,
+            color: '#424140',       //blue
+            weight: .7,
+            opacity: 1
+        };
+
+        var trailsOptions = {
+            color: '#a09273',       //green
+            weight: .5,
+            opacity: .9
+        }
+
+        var parkingOptions = {
+            color: '#f0f062',       //yellow
+            weight: .1,
+            opacity: .1
+        }
+
+
+        // AJAX calls to load data
+        $.when(
+            $.getJSON('data/fish.json'),
+            $.getJSON('data/grsm_trails.json'),
+            $.getJSON('data/grsm_boundary.json'),
+            $.getJSON('data/grsm_parking.json'),
+            //$.getJSON('data/map.json'),
+        ).done
+        (function (fish, trails, parkBounds, parking) {
+            drawMap(fish, trails, parkBounds, parking);
+            }
+        );
+
+        // ---------------------------------------------------------------
+
+        function drawMap(fishData, trailsData, parkBoundsData, parkingData) {
+            //next for commented lines were the first phase of loading the data to the map. Colors produced chaos.
+//             L.geoJson(fishData).addTo(map);
+//             L.geoJson(parkBoundsData).addTo(map);
+//             L.geoJson(parkingData).addTo(map);
+//             L.geoJson(trailsData).addTo(map);
+
+//load the data to the map rendering the color and styles for each in the particular order below
+            L.geoJson(fishData, {
+                style: fishOptions
+            }).addTo(map);
+            L.geoJson(trailsData, {
+                style: trailsOptions
+            }).addTo(map);
+            L.geoJson(parkBoundsData, {
+                 style: parkBoundsOptions
+            }).addTo(map);
+            L.geoJson(parkingData, {
+            style: parkingOptions,
+            }).addTo(map);
+
+        }
+
+    </script>
+</body>
+
+</html>
