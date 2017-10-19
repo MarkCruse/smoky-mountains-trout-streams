@@ -86,7 +86,8 @@ Add detail here.
         var trailsOptions = {
             color: '#a09273',       //green
             weight: .5,
-            opacity: .9
+            opacity: .9,
+            dashArray: "5, 5"
         }
 
         var parkingOptions = {
@@ -117,7 +118,11 @@ Add detail here.
 
             //load the data to the map rendering the color and styles for each in the particular order below
             L.geoJson(fishData, {
-                style: fishOptions
+                style: fishOptions,
+                onEachFeature: function(feature, layer) {
+                    // console.log(layer.feature.properties);
+                    layer.bindTooltip('what info here?')
+                }
             }).addTo(map);
             
             L.geoJson(trailsData, {
@@ -137,6 +142,12 @@ Add detail here.
             L.geoJson(parkingData, {
                 pointToLayer: function(feature, latlng) {
                     return L.marker(latlng, {icon: parkIcon}).addTo(map);
+                },
+                onEachFeature: function(feature, layer) {
+                    layer.on('mouseover', function() {
+                        console.log(layer.feature.properties)
+                    });
+                    layer.bindTooltip(feature.properties.LOC_NAME)
                 }
        
             }).addTo(map);
