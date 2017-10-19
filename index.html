@@ -11,15 +11,26 @@ Add detail here.
     <title>2015 Fish Distribution in Smoky Mountains</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
     <style>
-        body,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: rgba(0,0,0,.9); /*set the background to a black*/
+        }
         #map {
             position: absolute;
             width: 100%;
-            top: 0;
+            top: 80px;
             bottom: 0;
-            margin: 0;
-            padding: 0;
-            background: rgba(0,0,0,.75);        /*set the background to a black*/
+            background: rgba(0,0,0,.75);  
+        }
+        header{
+            border-bottom: 1px solid white;
+        }
+        h1 {
+            margin: 18px 0 18px 18px;
+            font-weight: normal;
+            color: white;
         }
         .tooltip {  //override the default Leaflet styles for tooltip
             color: white;
@@ -31,7 +42,9 @@ Add detail here.
 </head>
 
 <body>
-
+    <header>
+        <h1>Great Smokey Mountain Fishing</h1>
+    </header>
     <div id="map"></div>
 
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
@@ -41,13 +54,8 @@ Add detail here.
         //** zoom options
 
         var options = {
-            center: [35.627, -83.387],
-            zoom: 11,
-            minZoom: 9,
-            maxZoom: 16
-            //maxBounds: [
-            //    [33.911, -84.032],
-            //    [33.620, -84.772]
+
+
         };
 
         // create Leaflet map and apply options
@@ -83,7 +91,7 @@ Add detail here.
             fillOpacity: 0,
             color: '#12b4ea',       //blue
             opacity: 1,
-            weight: 3
+            weight: 7
         };
 
         var parkBoundsOptions = {
@@ -96,7 +104,8 @@ Add detail here.
         var trailsOptions = {
             color: '#a09273',       //green
             weight: .5,
-            opacity: .9
+            opacity: .9,
+            dashArray: "5, 5"
         }
 
         var maskOptions = {
@@ -126,6 +135,7 @@ Add detail here.
         function drawMap(fishData, trailsData, parkBoundsData, parkingData, maskData) {
             //next for commented lines were the first phase of loading the data to the map. Colors produced chaos.
 
+<<<<<<< HEAD
             //load the data to the map rendering the color and styles for each in the particular order below
             L.geoJson(fishData, {
                 style: fishOptions
@@ -142,6 +152,44 @@ Add detail here.
             L.geoJson(maskData, {
                 style: maskOptions,
                 }).addTo(map);
+=======
+
+            //load the data to the map rendering the color and styles for each in the particular order below
+            L.geoJson(fishData, {
+                style: fishOptions,
+                onEachFeature: function(feature, layer) {
+                    // console.log(layer.feature.properties);
+                    layer.bindTooltip('what info here?')
+                }
+            }).addTo(map);
+            
+            L.geoJson(trailsData, {
+                style: trailsOptions
+            }).addTo(map);
+            
+            var parkBounds = L.geoJson(parkBoundsData, {
+                 style: parkBoundsOptions
+            }).addTo(map);
+
+            // set map options dynamically from layer
+            map.fitBounds(parkBounds.getBounds())
+            map.setMaxBounds(parkBounds.getBounds());
+            map.setMinZoom(map.getZoom() - 1);
+            map.setMaxZoom(map.getZoom() + 5);
+            
+            L.geoJson(parkingData, {
+                pointToLayer: function(feature, latlng) {
+                    return L.marker(latlng, {icon: parkIcon}).addTo(map);
+                },
+                onEachFeature: function(feature, layer) {
+                    layer.on('mouseover', function() {
+                        console.log(layer.feature.properties)
+                    });
+                    layer.bindTooltip(feature.properties.LOC_NAME)
+                }
+       
+            }).addTo(map);
+>>>>>>> origin/master
 
         }
 
