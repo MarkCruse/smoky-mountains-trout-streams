@@ -41,13 +41,8 @@ Add detail here.
         //** zoom options
 
         var options = {
-            center: [35.627, -83.387],
-            zoom: 11,
-            minZoom: 9,
-            maxZoom: 16
-            //maxBounds: [
-            //    [33.911, -84.032],
-            //    [33.620, -84.772]
+
+
         };
 
         // create Leaflet map and apply options
@@ -78,7 +73,7 @@ Add detail here.
             fillOpacity: 0,
             color: '#12b4ea',       //blue
             opacity: 1,
-            weight: 3
+            weight: 7
         };
 
         var parkBoundsOptions = {
@@ -118,21 +113,27 @@ Add detail here.
 
         function drawMap(fishData, trailsData, parkBoundsData, parkingData) {
             //next for commented lines were the first phase of loading the data to the map. Colors produced chaos.
-//             L.geoJson(fishData).addTo(map);
-//             L.geoJson(parkBoundsData).addTo(map);
-//             L.geoJson(parkingData).addTo(map);
-//             L.geoJson(trailsData).addTo(map);
 
-//load the data to the map rendering the color and styles for each in the particular order below
+
+            //load the data to the map rendering the color and styles for each in the particular order below
             L.geoJson(fishData, {
                 style: fishOptions
             }).addTo(map);
+            
             L.geoJson(trailsData, {
                 style: trailsOptions
             }).addTo(map);
-            L.geoJson(parkBoundsData, {
+            
+            var parkBounds = L.geoJson(parkBoundsData, {
                  style: parkBoundsOptions
             }).addTo(map);
+
+            // set map options dynamically from layer
+            map.fitBounds(parkBounds.getBounds())
+            map.setMaxBounds(parkBounds.getBounds());
+            map.setMinZoom(map.getZoom() - 1);
+            map.setMaxZoom(map.getZoom() + 1);
+            
             L.geoJson(parkingData, {
                 pointToLayer: function(feature, latlng) {
                     return L.marker(latlng, {icon: parkIcon}).addTo(map);
