@@ -132,7 +132,7 @@ Add detail here.
             map.fitBounds(parkBounds.getBounds())
             map.setMaxBounds(parkBounds.getBounds());
             map.setMinZoom(map.getZoom() - 1);
-            map.setMaxZoom(map.getZoom() + 1);
+            map.setMaxZoom(map.getZoom() + 5);
             
             L.geoJson(parkingData, {
                 pointToLayer: function(feature, latlng) {
