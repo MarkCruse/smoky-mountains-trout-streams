@@ -1,0 +1,8 @@
+from within the new project-fiels dir/
+
+  564  ogr2ogr -f "GeoJSON" ../data/grsm_boundary.json GRSM_BOUNDARY/GRSM_BOUNDARY.shp
+  565  ogr2ogr -f "GeoJSON" ../data/grsm_parking.json -t_srs "EPSG:4326" GRSM_PARKING/GRSM_PARKING.shp
+  566  ogr2ogr -f "GeoJSON" ../data/grsm_trails.json -t_srs "EPSG:4326" GRSM_TRAILS/GRSM_TRAILS.shp
+  568  ogr2ogr -f "GeoJSON" ../data/fish.json -t_srs "EPSG:4326" FISH_DISTRIBUTION_2015/FISH_DISTRIBUTION_2015.shp
+  569  ogr2ogr -f "GeoJSON" ../data/fish2.json -t_srs "EPSG:4326" FISH_DISTRIBUTION_2015.zip
+  570  history > history.txt

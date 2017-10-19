@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><metadata>
+<idinfo>
+<descript>
+<abstract>For depicting the extent of fish distribution 2015 (Brook, Brown, and Rainbow) in the Great Smoky Mountains National Park. Using the USGS HEM Event Management tool, the start and end point of fish species are identified on named and un-named rivers and streams in the park. The HEM tool uses linear referencing to create linear feature class data which depicts the extent of fish distribution within the stream network. The EVENTTYPE attributes lists the fish species and can be used in combination with attribute queries to create one or many species distribution maps. These data support an on-going project and are published online to support project operational needs. As such, these data are not considered valid or final and may contain omissions or errors. Background and HistoryThe brook trout (Salvelinus fontinalis) is the only trout native to the southern Appalachian Mountains. It was once widespread in Great Smoky Mountains National Park (GRSM), occupying small, swift, high elevation mountain streams as well as larger rivers down to elevations of 1,600 feet. Since 1900, the brook trout has vanished from about 75% of its historical range in GRSM. The initial loss was due to large-scale mechanized logging operations early in the 20th century. Clear cuts and subsequent fires on steep mountainsides led to soil run-off and stream siltation. In addition, trees were cut from stream banks, allowing more sunlight to reach the waterways and raising water temperatures. The brook trout is even less tolerant of warm water than other trout species- it can not survive temperatures above 68˚F. (20˚C).As a result of these environmental changes, the brook trout disappeared from all streams in the Smokies below elevations of 3,000 feet. The decline of the brook trout caused displeasure among anglers who longed to trout fish in the mountains. In response, around 1910, logging companies and other entities began stocking streams with non-native rainbow trout from the western United States, brown trout from Europe, and brook trout from the northern United States. Stocking of northern brook trout continued into the 1950s; rainbow trout stocking did not cease until 1975. Competition from the non-native trout, especially rainbows, lead to further declines in the brook trout population. Rainbow trout are larger, more aggressive fish which dominate the prime habitats in streams and eat small brook trout. Biologists believe brook trout range in the Smokies has declined dramatically due to rainbow competition. Most surviving brook trout have become confined to marginal streams above 3,500 feet in elevation.Stream acidification is an increasingly serious threat to the survival of brook trout. Streams in GRSM naturally become more acidic at higher elevations. However, research shows that areas in the park above 4,800 feet in elevation are receiving some of the highest amounts of acid rain, acid fog, and dry deposition of any monitored site in North America. Consequently, many high elevation streams are becoming increasingly acidic, some to the point that they can no longer support brook trout.In 1996, genetic research conducted by the University of Tennessee confirmed long-held beliefs that the southern Appalachian brook trout is a distinct subspecies, differing in several ways from the stocked fish native to the northeastern United States and Canada. Only about 15% of park streams are believed to harbor pure strains of truly native fish, undiluted by hybridization with northern brook trout. Since the southern subspecies has such a limited range, and because that range has been diminished drastically in the last 100 years, the southern brook trout is considered a species of special concern. The Park Service is especially watchful of acidification and competition from rainbow trout in streams where the subspecies currently survives. Why Monitor Distribution?It has been determined that native brook trout have lost approximately 75% of their range and that 30 species of non-game fish are missing from the Park as a result of man-induced changes in the landscape. Unfortunately, annual monitoring to assess changes in aquatic communities were not implemented until the mid-1980’s. The efforts resulted in the development of standardized sampling protocols for streams in GRSM. The value of these protocols was quickly recognized by state and federal agencies working with trout resources elsewhere in the southeast. The protocols formed the basis of the “Standardized Sampling Guidelines for Wadeable Trout Streams” (Appendix B) which were adopted by the Trout Committee of the Southern Division of the American Fisheries Society. These protocols have been well tested and provide a method that adequately evaluates annual variation in fish communities as well as providing a method to evaluate changes in distribution and community structure. Fisheries survey work in Great Smoky Mountains National Park (GRSM) has shown that species diversity increases as stream order increases, from headwaters down to Park boundaries. Changes in elevation, stream gradient, physical habitat, and water chemistry naturally affect the distribution of fish populations along the length of streams. Entire aquatic communities are shaped and even changed by species interactions which in turn can regulate the density and integrity of the community. These changes, as well as those associated with abiotic events (drought, flood, etc.), have created the aquatic communities now known. However, in recent history, anthropogenic factors have significantly altered this natural process which has had a tremendous impact on aquatic ecosystems. Changes in species diversity and/or distribution may serve as early warning signals of environmental change resulting from human impacts such as air and water pollution. Scientifically based monitoring programs that continually evaluate aquatic communities are necessary to assess natural variation so that early warning signals of man-induced environmental stresses can be better diagnosed and understood.Historically, fisheries distribution studies in GRSM have primarily focused on sport fish monitoring, range loss of native brook trout and encroachment of exotic species. However, these efforts largely ignored non-game fish diversity and distribution in many of the park’s streams. Efforts to monitor brook trout range have occurred about every 20 years and have not allowed for a reasonable quantification of distributional changes. Likewise, efforts to monitor sportfish populations in larger streams have only occurred periodically and lacked consistency in data collection methods. Data comparisons are very difficult and limited because all of these efforts lack site descriptions and replication through time. Part of the reason for such spacing has been the difficulty associated with completing parkwide surveys and past emphasis on issues associated with sport fish populations. In addition, the surveys of King, Lennon, Jones, and Kelly were not accomplished using the same techniques, nor were historic sampling sites established. The lack of permanent historic sampling sites made it difficult, if not impossible, to replicate and compare these historic data.</abstract>
+<purpose>Great Smoky Mountains National Park Fish Distribution (2015)</purpose>
+</descript>
+<keywords>
+<theme>
+<themekt>None</themekt>
+<themekey>GRSM</themekey>
+<themekey>APHN</themekey>
+<themekey>SERO</themekey>
+<themekey>NRIM</themekey>
+<themekey>NPS</themekey>
+<themekey>Southeast Region</themekey>
+<themekey>Appalachian Highlands Network</themekey>
+<themekey>Great Smoky Mountains National Park</themekey>
+<themekey>Natural Resource Inventory and Monitoring Program</themekey>
+<themekey>National Park Service</themekey>
+<themekey>United States</themekey>
+<themekey>USA</themekey>
+<themekey>US</themekey>
+<themekey>U.S.</themekey>
+<themekey>Haywood County</themekey>
+<themekey>Sevier County</themekey>
+<themekey>Graham County</themekey>
+<themekey>Swain County</themekey>
+<themekey>Cocke County</themekey>
+<themekey>Blount County</themekey>
+<themekey>TN</themekey>
+<themekey>NC</themekey>
+<themekey>Tennessee</themekey>
+<themekey>North Carolina</themekey>
+<themekey>biota</themekey>
+<themekey>inlandWaters</themekey>
+<themekey>environment</themekey>
+<themekey>Biodiversity</themekey>
+<themekey>Biology</themekey>
+<themekey>trout</themekey>
+<themekey>brown trout</themekey>
+<themekey>rainbow trout</themekey>
+<themekey>brook trout</themekey>
+<themekey>Freshwater Communities</themekey>
+<themekey>Biological Integrity</themekey>
+<themekey>Fishes</themekey>
+<themekey>Hydrography</themekey>
+<themekey>Water Quality</themekey>
+<themekey>Hydrology</themekey>
+<themekey>Water Chemistry</themekey>
+<themekey>Water</themekey>
+<themekey>Fisheries</themekey>
+<themekey>Stream and River Channel Characteristics</themekey>
+<themekey>Surface Water Dynamics</themekey>
+<themekey>Fish Distribution</themekey>
+</theme>
+</keywords>
+<accconst>None</accconst>
+<useconst/>
+<datacred>Great Smoky Mountains National Park</datacred>
+</idinfo>
+<metainfo>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>
