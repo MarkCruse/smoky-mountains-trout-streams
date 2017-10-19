@@ -58,7 +58,12 @@ Add detail here.
         map.getPane('labels').style.zIndex = 650;
         map.getPane('labels').style.pointerEvents = 'none';
 
-       L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png', {
+        // L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+        // 	attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
+        //     pane: 'labels'
+        // }).addTo(map);
+
+        L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png', {
                 attribution: '©OpenStreetMap, ©CartoDB',
                 pane: 'labels'
         }).addTo(map);
@@ -94,8 +99,9 @@ Add detail here.
             opacity: .9
         }
 
-        var parkingOptions = {
-            color: '#f0f062',       //yellow
+        var maskOptions = {
+            fillOpacity: 0,
+            color: '#f0f062',
             weight: .1,
             opacity: .1
         }
@@ -103,39 +109,39 @@ Add detail here.
 
         // AJAX calls to load data
         $.when(
-            $.getJSON('data/fish.json'),
+            $.getJSON('data/grsm_fish.json'),
             $.getJSON('data/grsm_trails.json'),
             $.getJSON('data/grsm_boundary.json'),
             $.getJSON('data/grsm_parking.json'),
-            //$.getJSON('data/map.json'),
+            $.getJSON('data/grsm_carto_mask.json'),
+
         ).done
-        (function (fish, trails, parkBounds, parking) {
-            drawMap(fish, trails, parkBounds, parking);
+        (function (fish, trails, parkBounds, parking, mask) {
+            drawMap(fish, trails, parkBounds, parking, mask);
             }
         );
 
         // ---------------------------------------------------------------
 
-        function drawMap(fishData, trailsData, parkBoundsData, parkingData) {
+        function drawMap(fishData, trailsData, parkBoundsData, parkingData, maskData) {
             //next for commented lines were the first phase of loading the data to the map. Colors produced chaos.
-//             L.geoJson(fishData).addTo(map);
-//             L.geoJson(parkBoundsData).addTo(map);
-//             L.geoJson(parkingData).addTo(map);
-//             L.geoJson(trailsData).addTo(map);
 
-//load the data to the map rendering the color and styles for each in the particular order below
+            //load the data to the map rendering the color and styles for each in the particular order below
             L.geoJson(fishData, {
                 style: fishOptions
-            }).addTo(map);
+                }).addTo(map);
             L.geoJson(trailsData, {
                 style: trailsOptions
-            }).addTo(map);
+                }).addTo(map);
             L.geoJson(parkBoundsData, {
                  style: parkBoundsOptions
-            }).addTo(map);
+             }).addTo(map);
             L.geoJson(parkingData, {
-            style: parkingOptions,
-            }).addTo(map);
+                //style: parkingOptions,
+                }).addTo(map);
+            L.geoJson(maskData, {
+                style: maskOptions,
+                }).addTo(map);
 
         }
 
