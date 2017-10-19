@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><metadata>
+<idinfo>
+<descript>
+<abstract>This is a vector polyline file showing trails at Great Smoky Mountains National Park (GRSM). The data was collected using a Trimble Pro XR GPS receiver with a Trimble Compact Dome Antenna and a Trimble Asset Surveyor hand held data logger. The trail system a Great Smoky Mountains National Park is one of the most important man-made recreational features of the Park. This dataset represents the most comprehensive inventory of both locational and attribute information about the trails systems to date and is considered on of the most important base data layers for the Park. As such GRSM staff will strive to the both spatial and attribute information stored within this dataset up to date in order to best reflect the current status of the trails system at the Park Only Trails that are shown on the official park visitor map and/or listed in the park maintenance system are contained in this dataset. Other trails, while known to the park to exist and clearly used for access to permenant features (e.g. cemeteries, overlooks), are not contained in this dataset due to the parks desire to ensure safety of visitors on park trails. These data are formated for use by park staff in the park 1:24,000-scale topographic map series, and are classified using the "FCSubtype" field, which classifies a trail segment based on primary use.</abstract>
+<purpose>Great Smoky Mountains National Park Trails</purpose>
+</descript>
+<keywords>
+<theme>
+<themekt>None</themekt>
+<themekey>GRSM</themekey>
+<themekey>NPS</themekey>
+<themekey>Great Smoky Mountains National Park</themekey>
+<themekey>National Park Service</themekey>
+<themekey>trails</themekey>
+<themekey>hiking</themekey>
+<themekey>transportation</themekey>
+</theme>
+</keywords>
+<accconst>None</accconst>
+<useconst/>
+<datacred>Great Smoky Mountains National Park</datacred>
+</idinfo>
+<metainfo>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><metadata>
+<idinfo>
+<descript>
+<abstract>A feature class depicting geographic locations of park Parking Areas. Supplemental_Information: This database uses the Microsoft Spatial Storage Format to allow data entry and analysis via GIS and non-GIS applications. In order to make available to the database locations for which no specific coordinates are available, certain locations have been assigned "generic" coordinates in order to include the location records in the database functionality.</abstract>
+<purpose>Great Smoky Mountains National Park Parking Areas</purpose>
+</descript>
+<keywords>
+<theme>
+<themekt>None</themekt>
+<themekey>GRSM</themekey>
+<themekey>NPS</themekey>
+<themekey>National Park Service</themekey>
+<themekey>Great Smoky Mountains National Park</themekey>
+<themekey>Parking</themekey>
+<themekey>Roads</themekey>
+<themekey>Transportation</themekey>
+</theme>
+</keywords>
+<accconst>None</accconst>
+<useconst/>
+<datacred>Great Smoky Mountains National Park</datacred>
+</idinfo>
+<metainfo>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>
