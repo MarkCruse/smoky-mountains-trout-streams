@@ -155,7 +155,16 @@ Add detail here.
         function drawMap(fishData, trailsData, parkBoundsData, parkingData, maskData) {
             //load the data to the map rendering the color and styles for each in the particular order below
             L.geoJson(fishData, {
-                style: fishOptions,
+                style: function(feature){
+
+                    return {
+                        fillOpacity: 0,
+                        color: getFishColor(feature.properties.EVENTTYPE),
+                        opacity: 1,
+                        weight: 1.5
+                    }
+
+                },
                 onEachFeature: function(feature, layer) {
                     //console.log(layer.feature.properties);
                     tooltip_info = feature.properties.STREAMNAME+" \nType realeased: "+feature.properties.EVENTTYPE+" \nRealease Date: "+feature.properties.EVENTDATE;
@@ -166,6 +175,17 @@ Add detail here.
                     layer.bindTooltip(content)
                 }
             }).addTo(map);
+
+
+            function getFishColor(fishType) {
+                console.log(fishType)
+                if(fishType === "Rainbow") {
+                    return 'orange';
+                } else {
+                    return '#12b4ea';
+                }
+            }
+
 
             L.geoJson(trailsData, {
                 style: trailsOptions
