@@ -22,7 +22,7 @@ Add detail here.
             width: 100%;
             top: 80px;
             bottom: 0;
-            background: rgba(0,0,0,.75);  
+            background: rgba(0,0,0,.75);
         }
         header{
             border-bottom: 1px solid white;
@@ -79,11 +79,10 @@ Add detail here.
         // create custom icon
         var parkIcon = L.icon({
             iconUrl: 'images/parking_icon.png',
-            iconSize: [20, 20], // size of the icon
+            iconSize: [15, 15], // size of the icon
+            opacity: .2
             });
 
-        // create marker object, pass custom icon as option, add to map
-        var marker = L.marker([35.627, -83.17], {icon: parkIcon}).addTo(map);
 
         // **** Options for various layers - fish distribution, parkBounds, trails, parking
 
@@ -91,7 +90,7 @@ Add detail here.
             fillOpacity: 0,
             color: '#12b4ea',       //blue
             opacity: 1,
-            weight: 7
+            weight: 1.5
         };
 
         var parkBoundsOptions = {
@@ -133,26 +132,6 @@ Add detail here.
         // ---------------------------------------------------------------
 
         function drawMap(fishData, trailsData, parkBoundsData, parkingData, maskData) {
-            //next for commented lines were the first phase of loading the data to the map. Colors produced chaos.
-
-<<<<<<< HEAD
-            //load the data to the map rendering the color and styles for each in the particular order below
-            L.geoJson(fishData, {
-                style: fishOptions
-                }).addTo(map);
-            L.geoJson(trailsData, {
-                style: trailsOptions
-                }).addTo(map);
-            L.geoJson(parkBoundsData, {
-                 style: parkBoundsOptions
-             }).addTo(map);
-            L.geoJson(parkingData, {
-                //style: parkingOptions,
-                }).addTo(map);
-            L.geoJson(maskData, {
-                style: maskOptions,
-                }).addTo(map);
-=======
 
             //load the data to the map rendering the color and styles for each in the particular order below
             L.geoJson(fishData, {
@@ -162,11 +141,11 @@ Add detail here.
                     layer.bindTooltip('what info here?')
                 }
             }).addTo(map);
-            
+
             L.geoJson(trailsData, {
                 style: trailsOptions
             }).addTo(map);
-            
+
             var parkBounds = L.geoJson(parkBoundsData, {
                  style: parkBoundsOptions
             }).addTo(map);
@@ -176,7 +155,7 @@ Add detail here.
             map.setMaxBounds(parkBounds.getBounds());
             map.setMinZoom(map.getZoom() - 1);
             map.setMaxZoom(map.getZoom() + 5);
-            
+
             L.geoJson(parkingData, {
                 pointToLayer: function(feature, latlng) {
                     return L.marker(latlng, {icon: parkIcon}).addTo(map);
@@ -187,9 +166,10 @@ Add detail here.
                     });
                     layer.bindTooltip(feature.properties.LOC_NAME)
                 }
-       
+
             }).addTo(map);
->>>>>>> origin/master
+
+//>>>>>>> origin/master
 
         }
 
