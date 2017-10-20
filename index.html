@@ -61,7 +61,7 @@ Add detail here.
 
 <body>
     <header>
-        <h1>Great Smokey Mountain Fishing</h1>
+        <h1>Great Smoky Mountain Fishing</h1>
     </header>
     <div id="map"></div>
     <div id="legend">
@@ -122,7 +122,8 @@ Add detail here.
         };
 
         var trailsOptions = {
-            color: '#a09273',       //green
+            color: '#a09273',       //brown
+            color: '#056010',       //green
             weight: .5,
             opacity: .9,
             dashArray: "5, 5"
@@ -180,7 +181,11 @@ Add detail here.
             function getFishColor(fishType) {
                 console.log(fishType)
                 if(fishType === "Rainbow") {
-                    return 'orange';
+                    return '#efda1c';
+                } else if(fishType === "Brook"){
+                    return '#bc6207';
+                } else if(fishType === "Rainbow-Brown"){
+                        return '#bc6207';
                 } else {
                     return '#12b4ea';
                 }
