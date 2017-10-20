@@ -38,6 +38,24 @@ Add detail here.
             border: 0;
             font-size: 1.3em;
         }
+        #legend {
+            min-width: 170px; 
+            min-height: 170px;
+            background: rgba(0,0,0,.7);
+            border: 1px solid white;
+            border-radius: 4px;
+            position: absolute;
+            right: 18px;
+            bottom: 18px;
+            padding: 6px 18px;
+            z-index: 1000;
+        }
+        #legend h3 {
+            color: white;
+            font-weight: normal;
+            margin-top: 12px;
+
+        }
     </style>
 </head>
 
@@ -46,6 +64,9 @@ Add detail here.
         <h1>Great Smokey Mountain Fishing</h1>
     </header>
     <div id="map"></div>
+    <div id="legend">
+        <h3>Map symbols</h3>
+    </div>
 
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
