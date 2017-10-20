@@ -141,7 +141,7 @@ Add detail here.
                     tooltip_info = feature.properties.STREAMNAME+" \nType realeased: "+feature.properties.EVENTTYPE+" \nRealease Date: "+feature.properties.EVENTDATE;
                     var props = layer.feature.properties;       //assign layer properties to props
                     var content = "<b>"+ props.STREAMNAME + "</b><br>";
-                        content += "Fish Type(s): " + props.EVENTTYPE + " <br>";
+                        content += "Fish type(s): " + props.EVENTTYPE + " <br>";
                         content += "Release date: "+props.EVENTDATE.substring(0,10)+"<br>";
                     layer.bindTooltip(content)
                 }
