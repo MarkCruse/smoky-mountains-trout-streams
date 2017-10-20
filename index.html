@@ -137,8 +137,13 @@ Add detail here.
             L.geoJson(fishData, {
                 style: fishOptions,
                 onEachFeature: function(feature, layer) {
-                    // console.log(layer.feature.properties);
-                    layer.bindTooltip('what info here?')
+                    //console.log(layer.feature.properties);
+                    tooltip_info = feature.properties.STREAMNAME+" \nType realeased: "+feature.properties.EVENTTYPE+" \nRealease Date: "+feature.properties.EVENTDATE;
+                    var props = layer.feature.properties;       //assign layer properties to props
+                    var content = "<b>"+ props.STREAMNAME + "</b><br>";
+                        content += "Fish Type(s): " + props.EVENTTYPE + " <br>";
+                        content += "Release date: "+props.EVENTDATE.substring(0,10)+"<br>";
+                    layer.bindTooltip(content)
                 }
             }).addTo(map);
 
@@ -162,7 +167,7 @@ Add detail here.
                 },
                 onEachFeature: function(feature, layer) {
                     layer.on('mouseover', function() {
-                        console.log(layer.feature.properties)
+                        //console.log(layer.feature.properties)
                     });
                     layer.bindTooltip(feature.properties.LOC_NAME)
                 }
