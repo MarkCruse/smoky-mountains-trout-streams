@@ -181,9 +181,9 @@ Add detail here.
             map.setMinZoom(map.getZoom() - 1);
             map.setMaxZoom(map.getZoom() + 5);
 
-            L.geoJson(parkingData, {
+            var parking = L.geoJson(parkingData, {
                 pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng, {icon: parkIcon}).addTo(map);
+                    return L.marker(latlng, {icon: parkIcon});
                 },
                 onEachFeature: function(feature, layer) {
                     layer.on('mouseover', function() {
@@ -192,7 +192,15 @@ Add detail here.
                     layer.bindTooltip(feature.properties.LOC_NAME)
                 }
 
-            }).addTo(map);
+            })
+
+            map.on('zoomend', function() {
+                if(map.getZoom() >= 14) {
+                    parking.addTo(map);
+                } else {
+                    parking.removeFrom(map);
+                }
+            });
         }
 
     </script>
