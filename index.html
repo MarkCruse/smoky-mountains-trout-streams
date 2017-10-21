@@ -64,8 +64,8 @@ Add detail here.
             background: rgba(0,0,0,.7);
             color: whitesmoke;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            width: 160px;
-            border: 1px solid white;
+            width: 130px;
+            border: .5px solid white;
             border-radius: 4px;
         }
 
@@ -87,11 +87,11 @@ Add detail here.
         .legend ul {
             list-style-type: none;
             padding: 0;
-            margin: 12px 4px 0;
+            margin: 12px 1px 0;
         }
 
         .legend li {
-            height: 22px;
+            height: 12px;
         }
 
         .legend span {
@@ -143,7 +143,7 @@ Add detail here.
         // create custom icon
         var parkIcon = L.icon({
             iconUrl: 'images/parking_icon.png',
-            iconSize: [15, 15], // size of the icon
+            iconSize: [20, 20], // size of the icon
             opacity: .2
             });
 
@@ -295,22 +295,6 @@ Add detail here.
           // select and populate the heading, creating an unordered list for the class ranges and store as reference to variable
           var legend = $('.legend').html("<h3>Symbology</h3><ul>");
 
-          //loop through the break values
-        //   for (var i = 0; i < breaks.length - 1; i++) {
-
-        //       //access the color for each class range
-        //       var color = colorize(breaks[i], breaks);
-
-        //       //build a list item with color block and values
-        //       var classRange = '<li><span style="background:' + color + '"></span> ' +
-        //           breaks[i].toLocaleString() + ' &mdash; ' +
-        //           breaks[i + 1].toLocaleString() + '</li>'
-
-        //       //append the list item (classRange) to the legend
-        //       $('.legend ul').append(classRange);
-        //   }
-          // close the unordered list
-        //  legend.append("</ul>");
         var fishLegend = '<li><span style="background:' + '#efda1c' + '"></span> ' + "Rainbow";
             fishLegend = fishLegend + '<li><span style="background:' + '#bc6207' + '"></span> ' + "Brook";
                 fishLegend = fishLegend + '<li><span style="background:' + '#39fb12' + '"></span> ' + "Rainbow, Brown";
@@ -318,23 +302,11 @@ Add detail here.
                     fishLegend = fishLegend + '<li><span style="background:' + '#1df3f7' + '"></span> ' + "Brook, Brown";
                         fishLegend = fishLegend + '<li><span style="background:' + '#4B93C3' + '"></span> ' + "Rainbow, Brook, Brown";
                             fishLegend = fishLegend + '<li><span style="background:' + parkIcon + '"></span> ' + "Parking";
-                            
+                                fishLegend = fishLegend + '<li><span style="background:' + parkIcon + '"></span> ' + "Trails";
+                                
                         
         $('.legend ul').append(fishLegend);
         legend.append("</ul>");
-
-        // if(fishType === "Rainbow") {
-        //             return '#efda1c';
-        //         } else if(fishType === "Brook"){
-        //             return '#bc6207';
-        //         } else if(fishType === "Rainbow-Brown"){
-        //                 return '#bc6207';
-        //         } else if(fishType === "Rainbow-Brook"){
-        //                  return '#ff16fb';
-        //         } else if(fishType === "Brook-Brown"){
-        //                  return '#1df3f7';
-        //         } else {
-        //             return '#7ffff8'; 
         }
     </script>
 </body>
