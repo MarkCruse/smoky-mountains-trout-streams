@@ -38,7 +38,7 @@ Add detail here.
             border: 0;
             font-size: 1.3em;
         }
-        #legend {
+        /* #legend {
             min-width: 170px;
             min-height: 170px;
             background: rgba(0,0,0,.7);
@@ -54,9 +54,57 @@ Add detail here.
             color: white;
             font-weight: normal;
             margin-top: 12px;
+        } */
+
+/* ------------ */
+        .legend {
+            padding: 6px 8px;
+            font-size: .8em;
+            /* background: rgba(75, 75, 75, 0.8); */
+            background: rgba(0,0,0,.7);
+            color: whitesmoke;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 160px;
+            border: 1px solid white;
+            border-radius: 4px;
+        }
+
+        .legend h3 {
+            font-size: 1.1em;
+            font-weight: bold;
+            line-height: 1em;
+            color: whitesmoke;
+            margin: 0;
+            margin-top: 2px;
 
         }
-    </style>
+
+        .legend h3 span {
+            font-size: 1.3em;
+            margin: 0 20px 0 0;
+        }
+
+        .legend ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 12px 4px 0;
+        }
+
+        .legend li {
+            height: 22px;
+        }
+
+        .legend span {
+            width: 10px;
+            height: 10px;
+            float: left;
+            margin-right: 10px;
+    		}
+
+/* ------------ */
+
+
+</style>
 </head>
 
 <body>
@@ -64,9 +112,9 @@ Add detail here.
         <h1>Great Smoky Mountain Fishing</h1>
     </header>
     <div id="map"></div>
-    <div id="legend">
+    <!-- <div id="legend">
         <h3>Map symbols</h3>
-    </div>
+   </div> -->
 
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -86,11 +134,6 @@ Add detail here.
         map.createPane('labels');
         map.getPane('labels').style.zIndex = 650;
         map.getPane('labels').style.pointerEvents = 'none';
-
-        // L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-        // 	attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
-        //     pane: 'labels'
-        // }).addTo(map);
 
         L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png', {
                 attribution: '©OpenStreetMap, ©CartoDB',
@@ -150,7 +193,7 @@ Add detail here.
             drawMap(fish, trails, parkBounds, parking, mask);
             }
         );
-
+        drawLegend();
         // ---------------------------------------------------------------
 
         function drawMap(fishData, trailsData, parkBoundsData, parkingData, maskData) {
@@ -179,15 +222,19 @@ Add detail here.
 
 
             function getFishColor(fishType) {
-                console.log(fishType)
+                //console.log(fishType)
                 if(fishType === "Rainbow") {
                     return '#efda1c';
                 } else if(fishType === "Brook"){
                     return '#bc6207';
                 } else if(fishType === "Rainbow-Brown"){
-                        return '#bc6207';
+                        return '#39fb12';
+                } else if(fishType === "Rainbow-Brook"){
+                         return '#ff16fb';
+                } else if(fishType === "Brook-Brown"){
+                         return '#1df3f7';
                 } else {
-                    return '#12b4ea';
+                    return '#4B93C3';   //Rainbow-Brook_Brown
                 }
             }
 
@@ -227,7 +274,68 @@ Add detail here.
                 }
             });
         }
+        function drawLegend() {
+          //create a Leaflet control for the legend
+          var legendControl = L.control({
+              position: 'topright'
+          });
 
+          console.log('Im here');
+
+          legendControl.onAdd = function(map) {
+
+              //create a new division element with class of 'legend'
+              var legend = L.DomUtil.create('div', 'legend');
+              return legend;
+
+          };
+
+          legendControl.addTo(map);
+
+          // select and populate the heading, creating an unordered list for the class ranges and store as reference to variable
+          var legend = $('.legend').html("<h3>Symbology</h3><ul>");
+
+          //loop through the break values
+        //   for (var i = 0; i < breaks.length - 1; i++) {
+
+        //       //access the color for each class range
+        //       var color = colorize(breaks[i], breaks);
+
+        //       //build a list item with color block and values
+        //       var classRange = '<li><span style="background:' + color + '"></span> ' +
+        //           breaks[i].toLocaleString() + ' &mdash; ' +
+        //           breaks[i + 1].toLocaleString() + '</li>'
+
+        //       //append the list item (classRange) to the legend
+        //       $('.legend ul').append(classRange);
+        //   }
+          // close the unordered list
+        //  legend.append("</ul>");
+        var fishLegend = '<li><span style="background:' + '#efda1c' + '"></span> ' + "Rainbow";
+            fishLegend = fishLegend + '<li><span style="background:' + '#bc6207' + '"></span> ' + "Brook";
+                fishLegend = fishLegend + '<li><span style="background:' + '#39fb12' + '"></span> ' + "Rainbow, Brown";
+                    fishLegend = fishLegend + '<li><span style="background:' + '#ff16fb' + '"></span> ' + "Rainbow, Brook";
+                    fishLegend = fishLegend + '<li><span style="background:' + '#1df3f7' + '"></span> ' + "Brook, Brown";
+                        fishLegend = fishLegend + '<li><span style="background:' + '#4B93C3' + '"></span> ' + "Rainbow, Brook, Brown";
+                            fishLegend = fishLegend + '<li><span style="background:' + parkIcon + '"></span> ' + "Parking";
+                            
+                        
+        $('.legend ul').append(fishLegend);
+        legend.append("</ul>");
+
+        // if(fishType === "Rainbow") {
+        //             return '#efda1c';
+        //         } else if(fishType === "Brook"){
+        //             return '#bc6207';
+        //         } else if(fishType === "Rainbow-Brown"){
+        //                 return '#bc6207';
+        //         } else if(fishType === "Rainbow-Brook"){
+        //                  return '#ff16fb';
+        //         } else if(fishType === "Brook-Brown"){
+        //                  return '#1df3f7';
+        //         } else {
+        //             return '#7ffff8'; 
+        }
     </script>
 </body>
 
