@@ -165,7 +165,7 @@ Add detail here.
         };
 
         var trailsOptions = {
-            color: '#a09273',       //brown
+            //color: '#a09273',       //brown
             color: '#056010',       //green
             weight: .5,
             opacity: .9,
@@ -292,19 +292,19 @@ Add detail here.
 
           legendControl.addTo(map);
 
-          // select and populate the heading, creating an unordered list for the class ranges and store as reference to variable
+          // select and populate the heading, creating an unordered list for the fish types
           var legend = $('.legend').html("<h3>Symbology</h3><ul>");
 
         var fishLegend = '<li><span style="background:' + '#efda1c' + '"></span> ' + "Rainbow";
             fishLegend = fishLegend + '<li><span style="background:' + '#bc6207' + '"></span> ' + "Brook";
-                fishLegend = fishLegend + '<li><span style="background:' + '#39fb12' + '"></span> ' + "Rainbow, Brown";
-                    fishLegend = fishLegend + '<li><span style="background:' + '#ff16fb' + '"></span> ' + "Rainbow, Brook";
-                    fishLegend = fishLegend + '<li><span style="background:' + '#1df3f7' + '"></span> ' + "Brook, Brown";
-                        fishLegend = fishLegend + '<li><span style="background:' + '#4B93C3' + '"></span> ' + "Rainbow, Brook, Brown";
-                            fishLegend = fishLegend + '<li><span style="background:' + parkIcon + '"></span> ' + "Parking";
-                                fishLegend = fishLegend + '<li><span style="background:' + parkIcon + '"></span> ' + "Trails";
-                                
-                        
+            fishLegend = fishLegend + '<li><span style="background:' + '#39fb12' + '"></span> ' + "Rainbow, Brown";
+            fishLegend = fishLegend + '<li><span style="background:' + '#ff16fb' + '"></span> ' + "Rainbow, Brook";
+            fishLegend = fishLegend + '<li><span style="background:' + '#1df3f7' + '"></span> ' + "Brook, Brown";
+            fishLegend = fishLegend + '<li><span style="background:' + '#4B93C3' + '"></span> ' + "Rainbow, Brook, Brown";
+            fishLegend = fishLegend + '<li><hr>';
+            fishLegend = fishLegend + '<li><span style="background:' + '"><img src="images/parking_icon.png" style="width:15px;height:15px;"></span> ' + "Parking";
+            fishLegend = fishLegend + '<li><span style="background:' + parkIcon + '"></span> ' + "Trails";
+                            
         $('.legend ul').append(fishLegend);
         legend.append("</ul>");
         }
