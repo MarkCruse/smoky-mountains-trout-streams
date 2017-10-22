@@ -58,53 +58,55 @@ Add detail here.
 
 /* ------------ */
         .legend {
-            padding: 6px 8px;
+            padding: 6px 6px;
             font-size: .8em;
-            /* background: rgba(75, 75, 75, 0.8); */
-            background: rgba(0,0,0,.7);
-            color: whitesmoke;
+            /* background: rgba(75, 75, 75, 0.8); 
+            background: rgba(0,0,0,.7);*/
+            background: rgba(193, 211, 153, 0.589);
+            color: rgb(24, 22, 22);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            width: 130px;
-            border: .5px solid white;
+            width: 180px;
+            border: .5px solid rgb(65, 58, 58);
             border-radius: 4px;
         }
 
         .legend h3 {
-            font-size: 1.1em;
+            font-size: 1em;
             font-weight: bold;
-            line-height: 1em;
-            color: whitesmoke;
+            line-height: 1.5em;
+            color: rgb(10, 10, 10);
             margin: 0;
             margin-top: 2px;
 
         }
 
         .legend h3 span {
-            font-size: 1.3em;
-            margin: 0 20px 0 0;
+            font-size: 2em;
+            margin: 0 10px 0 0;
         }
 
         .legend ul {
             list-style-type: none;
             padding: 0;
-            margin: 12px 1px 0;
+            font-size: 1.2em;
+            margin: 14px 1px 0;
         }
 
         .legend li {
-            height: 12px;
+            height: 16px;
         }
 
         .legend span {
             width: 10px;
-            height: 10px;
+            height: 12px;
             float: left;
+            font-size: 1.2em;
             margin-right: 10px;
     		}
 
 /* ------------ */
 
-
-</style>
+    </style>
 </head>
 
 <body>
@@ -119,26 +121,19 @@ Add detail here.
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
+    <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
     <script>
-        //** zoom options
 
-        var options = {
-
-
+    var options = {
         };
 
         // create Leaflet map and apply options
-        var map = L.map('map', options);
+        //var map = L.map('map', options);
 
-        // add labels & tiles to the map
-        map.createPane('labels');
-        map.getPane('labels').style.zIndex = 650;
-        map.getPane('labels').style.pointerEvents = 'none';
-
-        L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png', {
-                attribution: '©OpenStreetMap, ©CartoDB',
-                pane: 'labels'
-        }).addTo(map);
+        L.mapbox.accessToken = 'pk.eyJ1IjoibWRjcnVzZSIsImEiOiJjaXphYnhyaXMwMm1zMnFvOHVhanZtMGZ5In0.xnbrvIVE2IXBudC4OwuZtw';
+        var map = L.mapbox.map('map', 'mapbox.streets')
+            .setView([35.63, -83.50], 10);
 
         // create custom icon
         var parkIcon = L.icon({
@@ -149,63 +144,61 @@ Add detail here.
 
 
         // **** Options for various layers - fish distribution, parkBounds, trails, parking
-
-        var fishOptions = {
-            fillOpacity: 0,
-            color: '#12b4ea',       //blue
-            opacity: 1,
-            weight: 1.5
-        };
-
         var parkBoundsOptions = {
             fillOpacity: .3,
             color: '#424140',       //blue
-            weight: .7,
+            weight: 1.5,
             opacity: 1
         };
 
         var trailsOptions = {
-            //color: '#a09273',       //brown
+            color: '#a09273',       //brown
             color: '#056010',       //green
-            weight: .5,
+            color: '#0E0E00',
+            weight: .7,
             opacity: .9,
             dashArray: "5, 5"
         }
 
         var maskOptions = {
-            fillOpacity: 0,
-            color: '#f0f062',
+            fillOpacity: .4,
+            color: '#0f0f00',
             weight: .1,
-            opacity: .1
+            opacity: .2
         }
-
 
         // AJAX calls to load data
         $.when(
+            $.getJSON('data/grsm_carto_mask.json'),
             $.getJSON('data/grsm_fish.json'),
             $.getJSON('data/grsm_trails.json'),
             $.getJSON('data/grsm_boundary.json'),
             $.getJSON('data/grsm_parking.json'),
-            $.getJSON('data/grsm_carto_mask.json'),
 
         ).done
-        (function (fish, trails, parkBounds, parking, mask) {
-            drawMap(fish, trails, parkBounds, parking, mask);
+        (function (mask, fish, trails, parkBounds, parking) {
+            drawMap(mask, fish, trails, parkBounds, parking);
             }
         );
+
         drawLegend();
         // ---------------------------------------------------------------
 
-        function drawMap(fishData, trailsData, parkBoundsData, parkingData, maskData) {
+        function drawMap(maskData, fishData, trailsData, parkBoundsData, parkingData) {
             //load the data to the map rendering the color and styles for each in the particular order below
+
+            L.geoJson(maskData, {
+                style: maskOptions
+            }).addTo(map);
+
             L.geoJson(fishData, {
                 style: function(feature){
 
                     return {
                         fillOpacity: 0,
                         color: getFishColor(feature.properties.EVENTTYPE),
-                        opacity: 1,
-                        weight: 1.5
+                        opacity: 10,
+                        weight: 1.8
                     }
 
                 },
@@ -224,17 +217,17 @@ Add detail here.
             function getFishColor(fishType) {
                 //console.log(fishType)
                 if(fishType === "Rainbow") {
-                    return '#efda1c';
+                    return '#D00523';
                 } else if(fishType === "Brook"){
-                    return '#bc6207';
+                    return '#072DD3';
                 } else if(fishType === "Rainbow-Brown"){
-                        return '#39fb12';
+                        return '#9E4B1E';
                 } else if(fishType === "Rainbow-Brook"){
                          return '#ff16fb';
                 } else if(fishType === "Brook-Brown"){
-                         return '#1df3f7';
+                         return '#FD8624';
                 } else {
-                    return '#4B93C3';   //Rainbow-Brook_Brown
+                    return '#7A2C9F';   //Rainbow-Brook_Brown
                 }
             }
 
@@ -295,15 +288,15 @@ Add detail here.
           // select and populate the heading, creating an unordered list for the fish types
           var legend = $('.legend').html("<h3>Symbology</h3><ul>");
 
-        var fishLegend = '<li><span style="background:' + '#efda1c' + '"></span> ' + "Rainbow";
-            fishLegend = fishLegend + '<li><span style="background:' + '#bc6207' + '"></span> ' + "Brook";
-            fishLegend = fishLegend + '<li><span style="background:' + '#39fb12' + '"></span> ' + "Rainbow, Brown";
+        var fishLegend = '<li><span style="background:' + '#D00523' + '"></span> ' + "Rainbow";
+            fishLegend = fishLegend + '<li><span style="background:' + '#072DD3' + '"></span> ' + "Brook";
+            fishLegend = fishLegend + '<li><span style="background:' + '#9E4B1E' + '"></span> ' + "Rainbow, Brown";
             fishLegend = fishLegend + '<li><span style="background:' + '#ff16fb' + '"></span> ' + "Rainbow, Brook";
-            fishLegend = fishLegend + '<li><span style="background:' + '#1df3f7' + '"></span> ' + "Brook, Brown";
-            fishLegend = fishLegend + '<li><span style="background:' + '#4B93C3' + '"></span> ' + "Rainbow, Brook, Brown";
+            fishLegend = fishLegend + '<li><span style="background:' + '#55D2F1' + '"></span> ' + "Brook, Brown";
+            fishLegend = fishLegend + '<li><span style="background:' + '#FD8624' + '"></span> ' + "Rainbow, Brook, Brown";
             fishLegend = fishLegend + '<li><hr>';
             fishLegend = fishLegend + '<li><span style="background:' + '"><img src="images/parking_icon.png" style="width:15px;height:15px;"></span> ' + "Parking";
-            fishLegend = fishLegend + '<li><span style="background:' + parkIcon + '"></span> ' + "Trails";
+           // fishLegend = fishLegend + '<li><span style="background:' + parkIcon + '"></span> ' + "Trails";
                             
         $('.legend ul').append(fishLegend);
         legend.append("</ul>");
