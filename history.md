@@ -31,5 +31,9 @@ Wednesday, October 17
 * git commit -m "updates 2 README file"
 * git add history.md
 * git commit -m "add history.md"
-        
+
 history 100 >>history.md | output last 100 to history.md
+
+2017-10-20
+*  cd GRSM_FISH_DISTRO
+*  ogr2ogr -f "GeoJSON" grsm_fish.json -t_srs "EPSG:4326" GRSM_FISH_DISTRO.shp
