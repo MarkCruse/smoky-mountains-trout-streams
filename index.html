@@ -204,11 +204,12 @@ Add detail here.
                 },
                 onEachFeature: function(feature, layer) {
                     //console.log(layer.feature.properties);
-                    tooltip_info = feature.properties.STREAMNAME+" \nType realeased: "+feature.properties.EVENTTYPE+" \nRealease Date: "+feature.properties.EVENTDATE;
+                    //tooltip_info = feature.properties.STREAMNAME+" \nType realeased: "+feature.properties.EVENTTYPE+" \nRealease Date: "+feature.properties.EVENTDATE;
                     var props = layer.feature.properties;       //assign layer properties to props
                     var content = "<b>"+ props.STREAMNAME + "</b><br>";
                         content += "Fish type(s): " + props.EVENTTYPE + " <br>";
-                        content += "Release date: "+props.EVENTDATE.substring(0,10)+"<br>";
+                        content += "Elevation: "+props.ELEVATION.toLocaleString() +" ft<br>";
+                        content += "Watershed: " + props.WATERSHED + " <br>";
                     layer.bindTooltip(content)
                 }
             }).addTo(map);
