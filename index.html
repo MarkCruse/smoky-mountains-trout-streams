@@ -212,7 +212,9 @@ Add detail here.
                         content += "Fish type(s): " + props.EVENTTYPE + " <br>";
                         content += "Elevation: "+props.ELEVATION.toLocaleString() +" ft<br>";
                         content += "Watershed: " + props.WATERSHED + " <br>";
-                    layer.bindTooltip(content)
+                        content += "Park District: " + props.PARKDISTRI + " <br>";
+                        content += "State: " + props.STATE + " <br>";
+                        layer.bindTooltip(content)
                 }
             }).addTo(map);
 
