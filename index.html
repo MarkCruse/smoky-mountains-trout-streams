@@ -59,46 +59,48 @@ Add detail here.
 /* ------------ */
         .legend {
             padding: 6px 6px;
-            font-size: .8em;
+            font-size: .7em;
             /* background: rgba(75, 75, 75, 0.8); 
             background: rgba(0,0,0,.7);*/
             background: rgba(193, 211, 153, 0.589);
             color: rgb(24, 22, 22);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             width: 180px;
+            height: 180px;
             border: .5px solid rgb(65, 58, 58);
             border-radius: 4px;
+            padding: 2px 6px;
         }
 
         .legend h3 {
-            font-size: 1em;
+            font-size: .8em;
             font-weight: bold;
-            line-height: 1.5em;
+            line-height: 1.0em;
             color: rgb(10, 10, 10);
-            margin: 0;
             margin-top: 2px;
+            padding: 2px 35px;
 
         }
 
         .legend h3 span {
-            font-size: 2em;
-            margin: 0 10px 0 0;
+            font-size: .1em;
         }
 
         .legend ul {
             list-style-type: none;
             padding: 0;
-            font-size: 1.2em;
-            margin: 14px 1px 0;
+            font-size: 1.4em;
+            margin: 10px 1px 0;
         }
 
         .legend li {
             height: 16px;
+            padding: .4em;
         }
 
         .legend span {
-            width: 10px;
-            height: 12px;
+            width: 15px;
+            height: 14px;
             float: left;
             font-size: 1.2em;
             margin-right: 10px;
@@ -296,7 +298,7 @@ Add detail here.
             fishLegend = fishLegend + '<li><span style="background:' + '#55D2F1' + '"></span> ' + "Brook, Brown";
             fishLegend = fishLegend + '<li><span style="background:' + '#FD8624' + '"></span> ' + "Rainbow, Brook, Brown";
             fishLegend = fishLegend + '<li><hr>';
-            fishLegend = fishLegend + '<li><span style="background:' + '"><img src="images/parking_icon.png" style="width:15px;height:15px;"></span> ' + "Parking";
+            fishLegend = fishLegend + '<li><span style="background:' + '"><img src="images/parking_icon.png" style="width:18px;height:18px;"></span> ' + "Parking";
            // fishLegend = fishLegend + '<li><span style="background:' + parkIcon + '"></span> ' + "Trails";
                             
         $('.legend ul').append(fishLegend);
