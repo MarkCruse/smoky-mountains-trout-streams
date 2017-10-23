@@ -33,7 +33,7 @@ Add detail here.
         }        
   
         a {
-                color: rgb(74, 132, 187); }
+            color: rgb(74, 132, 187); }
 
         p {
             position: absolute;
@@ -202,38 +202,39 @@ Add detail here.
         $.when(
             $.getJSON('data/grsm_carto_mask.json'),
             $.getJSON('data/grsm_fish.json'),
+            $.getJSON('data/grsm_fish.json'),
             $.getJSON('data/grsm_trails.json'),
             $.getJSON('data/grsm_boundary.json'),
             $.getJSON('data/grsm_parking.json'),
 
         ).done
-        (function (mask, fish, trails, parkBounds, parking) {
-            drawMap(mask, fish, trails, parkBounds, parking);
+        (function (mask, troutStream, fish, trails, parkBounds, parking) {
+            drawMap(mask, troutStream, fish, trails, parkBounds, parking);
             }
         );
 
         drawLegend();
         // ---------------------------------------------------------------
 
-        function drawMap(maskData, fishData, trailsData, parkBoundsData, parkingData) {
+        function drawMap(maskData, troutStreamBuffer, fishData, trailsData, parkBoundsData, parkingData) {
             //load the data to the map rendering the color and styles for each in the particular order below
 
             L.geoJson(maskData, {
                 style: maskOptions
             }).addTo(map);
 
-            L.geoJson(fishData, {
+            // troutStreamBuffer provides an invisible layer around the streams to make it easier for the tooltip info to display
+            // so that the end-user does not have to put the mouse pointer exactly on the stream.
+            L.geoJson(troutStreamBuffer, {
                 style: function(feature){
-
                     return {
                         fillOpacity: 0,
-                        color: getFishColor(feature.properties.EVENTTYPE),
-                        opacity: 10,
-                        weight: 1.8
+                        color: 'white',
+                        opacity: 0,
+                        weight: 15
                     }
-
                 },
-                onEachFeature: function(feature, layer) {
+                onEachFeature: function(feature, layer) {       //tooltip info
                     var props = layer.feature.properties;       //assign layer properties to props
                     var content = "<b>"+ props.STREAMNAME + "</b><br>";
                         content += "Fish type(s): " + props.EVENTTYPE + " <br>";
@@ -245,7 +246,18 @@ Add detail here.
                 }
             }).addTo(map);
 
-            function getFishColor(fishType) {
+            L.geoJson(fishData, {           //colors the streams based on the tout types within
+                style: function(feature){
+                    return {
+                        fillOpacity: 0,
+                        color: getFishColor(feature.properties.EVENTTYPE),
+                        opacity: 10,
+                        weight: 2.8
+                    }
+                }
+            }).addTo(map);
+
+            function getFishColor(fishType) {       //assigns a color to each fish or fish group identified in the data
                 //console.log(fishType)
                 if(fishType === "Rainbow") {
                     return '#D00523';
@@ -319,7 +331,9 @@ Add detail here.
 
           // select and populate the heading, creating an unordered list for the fish types
           var legend = $('.legend').html("<h3>Symbology</h3><ul>");
-
+//****************
+//*** The following part of the legend seems like a hot mess
+//****************
         var fishLegend = '<li><span style="background:' + '#D00523' + '"></span> ' + "Rainbow";
             fishLegend = fishLegend + '<li><span style="background:' + '#072DD3' + '"></span> ' + "Brook";
             fishLegend = fishLegend + '<li><span style="background:' + '#9E4B1E' + '"></span> ' + "Rainbow, Brown";
