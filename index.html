@@ -30,7 +30,10 @@ Add detail here.
         }
         header{
             border-bottom: 1px solid white;
-        }
+        }        
+  
+        a {
+                color: rgb(74, 132, 187); }
 
         p {
             position: absolute;
@@ -119,11 +122,6 @@ Add detail here.
             font-size: 1.2em;
             margin-right: 10px;
     		}
-        
-        a {
-                color: rgb(74, 132, 187);
-        
-/* ------------ */
 
     </style>
 </head>
@@ -151,21 +149,24 @@ Add detail here.
         <b>Map designed by:</b>&nbsp;&nbsp;Mark Cruse & Rich Donahue - October 2017
       </p>
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
-    <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
-    <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    //<script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+    //<link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
+    
     <script>
 
-    var options = {
+        var options = {
         };
 
         // create Leaflet map and apply options
-        //var map = L.map('map', options);
+        var map = L.map('map', options);
 
-        L.mapbox.accessToken = 'pk.eyJ1IjoibWRjcnVzZSIsImEiOiJjaXphYnhyaXMwMm1zMnFvOHVhanZtMGZ5In0.xnbrvIVE2IXBudC4OwuZtw';
-        var map = L.mapbox.map('map', 'mapbox.streets')
-            .setView([35.63, -83.50], 10);
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox.streets',
+            accessToken: 'pk.eyJ1IjoibWRjcnVzZSIsImEiOiJjaXphYnhyaXMwMm1zMnFvOHVhanZtMGZ5In0.xnbrvIVE2IXBudC4OwuZtw'
+        }).addTo(map);
 
         // create custom icon
         var parkIcon = L.icon({
@@ -235,8 +236,6 @@ Add detail here.
 
                 },
                 onEachFeature: function(feature, layer) {
-                    //console.log(layer.feature.properties);
-                    //tooltip_info = feature.properties.STREAMNAME+" \nType realeased: "+feature.properties.EVENTTYPE+" \nRealease Date: "+feature.properties.EVENTDATE;
                     var props = layer.feature.properties;       //assign layer properties to props
                     var content = "<b>"+ props.STREAMNAME + "</b><br>";
                         content += "Fish type(s): " + props.EVENTTYPE + " <br>";
@@ -247,7 +246,6 @@ Add detail here.
                         layer.bindTooltip(content)
                 }
             }).addTo(map);
-
 
             function getFishColor(fishType) {
                 //console.log(fishType)
@@ -265,7 +263,6 @@ Add detail here.
                     return '#7A2C9F';   //Rainbow-Brook_Brown
                 }
             }
-
 
             L.geoJson(trailsData, {
                 style: trailsOptions
@@ -302,6 +299,8 @@ Add detail here.
                 }
             });
         }
+
+    // ********** Legend ***********
         function drawLegend() {
           //create a Leaflet control for the legend
           var legendControl = L.control({
@@ -338,5 +337,4 @@ Add detail here.
         }
     </script>
 </body>
-
 </html>
