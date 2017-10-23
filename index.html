@@ -8,7 +8,7 @@ Add detail here.
 <head>
     <meta charset="utf-8">
 
-    <title>2015 Fish Distribution in Smoky Mountains</title>
+    <title>Trout Distribution in Smoky Mountains</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
     <style>
         body {
@@ -18,14 +18,28 @@ Add detail here.
             background: rgba(0,0,0,.9); /*set the background to a black*/
         }
         #map {
-            position: absolute;
+            /*position: absolute;
             width: 100%;
             top: 80px;
-            bottom: 0;
+            bottom: 0;*/
             background: rgba(0,0,0,.75);
+            width: 1100px;
+            height: 500px;
+            margin: 10px auto;
+            border: 1px solid #d3d3d3;
         }
         header{
             border-bottom: 1px solid white;
+        }
+
+        p {
+            position: absolute;
+            top: 600px;
+            left: 65px;
+            font-size: .9em;
+            font-weight: 80;
+            color: #fffcfb;
+            line-height: 1.3em;
         }
         h1 {
             margin: 18px 0 18px 18px;
@@ -105,7 +119,10 @@ Add detail here.
             font-size: 1.2em;
             margin-right: 10px;
     		}
-
+        
+        a {
+                color: rgb(74, 132, 187);
+        
 /* ------------ */
 
     </style>
@@ -113,13 +130,26 @@ Add detail here.
 
 <body>
     <header>
-        <h1>Great Smoky Mountain Fishing</h1>
+        <h1>Great Smoky Mountain Trout Streams</h1>
     </header>
     <div id="map"></div>
     <!-- <div id="legend">
         <h3>Map symbols</h3>
    </div> -->
+   <hr>>
+   <p>
+        In the past 100+ years, the brook trout, the only trout native to the southern Appalachian Mountains, began to dimish due to many environmental 
+        changes. The brook trout was once <br>widespread in Great Smoky Mountains National Park (GRSM), occupying small, swift, high elevation mountain 
+        streams as well as larger rivers down to elevations of 1,600 feet. <br>In the 1950 and continuing for 25 years, various other trout species were 
+        introduced into the streams of the GRSM. Non-native rainbow trout from the western United States, <br>brown trout from Europe, and brook trout from 
+        the northern United States were stocked in the streams. This further complicated matters for the native brook trout and today most <br>surviving brook 
+        trout have become confined to marginal streams above 3,500 feet in elevation. This map depicts the distribution of trout taken in 2015.
+        <br/><br/>
 
+        <b>Data source:&nbsp;&nbsp;</b><a href="https://grsm-nps.opendata.arcgis.com/">National Park Service - Great Smoky Mountains</a>
+        <br/><br/>
+        <b>Map designed by:</b>&nbsp;&nbsp;Mark Cruse & Rich Donahue - October 2017
+      </p>
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
