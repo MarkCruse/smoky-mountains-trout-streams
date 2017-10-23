@@ -50,53 +50,32 @@ Add detail here.
             color: white;
         }
         .tooltip {
-            color: white;
-            background: #295b97;
-            border: 0;
-            font-size: 1.3em;
-        }
-        /* #legend {
-            min-width: 170px;
-            min-height: 170px;
-            background: rgba(0,0,0,.7);
-            border: 1px solid white;
-            border-radius: 4px;
-            position: absolute;
-            right: 18px;
-            top: 90px;
-            padding: 6px 18px;
-            z-index: 1000;
-        }
-        #legend h3 {
-            color: white;
-            font-weight: normal;
-            margin-top: 12px;
-        } */
+            background: rgba(193, 211, 153, 0.966);;
+            color: rgb(48, 5, 5);
+            font-size: 1em;
 
-/* ------------ */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border: .5px solid rgb(65, 58, 58);
+            border-radius: 4px;
+        }
+
         .legend {
             padding: 6px 6px;
             font-size: .7em;
-            /* background: rgba(75, 75, 75, 0.8); 
-            background: rgba(0,0,0,.7);*/
-            background: rgba(193, 211, 153, 0.589);
+            background: rgba(193, 211, 153, 0.849);
             color: rgb(24, 22, 22);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            width: 180px;
-            height: 180px;
             border: .5px solid rgb(65, 58, 58);
             border-radius: 4px;
-            padding: 2px 6px;
         }
 
         .legend h3 {
-            font-size: .8em;
+            font-size: 1.8em;
             font-weight: bold;
-            line-height: 1.0em;
+            line-height: .2em;
             color: rgb(10, 10, 10);
-            margin-top: 2px;
-            padding: 2px 35px;
-
+            margin-top: 3px;
+            padding: 1px 35px 0;
         }
 
         .legend h3 span {
@@ -107,12 +86,12 @@ Add detail here.
             list-style-type: none;
             padding: 0;
             font-size: 1.4em;
-            margin: 10px 1px 0;
+            margin: 1px 1px 4px;
         }
 
         .legend li {
-            height: 16px;
-            padding: .4em;
+            height: 8px;
+            padding: 4px
         }
 
         .legend span {
@@ -148,8 +127,6 @@ Add detail here.
       </p>
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    //<script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
-    //<link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
     
     <script>
 
@@ -236,13 +213,19 @@ Add detail here.
                 },
                 onEachFeature: function(feature, layer) {       //tooltip info
                     var props = layer.feature.properties;       //assign layer properties to props
-                    var content = "<b>"+ props.STREAMNAME + "</b><br>";
-                        content += "Fish type(s): " + props.EVENTTYPE + " <br>";
-                        content += "Elevation: "+props.ELEVATION.toLocaleString().split('.')[0] +" ft<br>";
-                        content += "Watershed: " + props.WATERSHED + " <br>";
-                        content += "Park District: " + props.PARKDISTRI + " <br>";
-                        content += "State: " + props.STATE + " <br>";
-                        layer.bindTooltip(content)
+                    if (props.STREAMNAME == null) {             //if stream name is null use Unknown
+                        props.STREAMNAME = 'Unknown';
+                    }                    
+                    if (props.PARKDISTRI == null) {             //if park district is null use Unknown
+                        props.PARKDISTRI = 'Unknown';
+                    }
+                    var content = "Stream name: <b>" + props.STREAMNAME + "</b><br>";
+                        content += "Fish type(s): <b>" + props.EVENTTYPE + " </b><br>";
+                        content += "Elevation: <b>"+props.ELEVATION.toLocaleString().split('.')[0] +" ft</b><br>";
+                        content += "Watershed: <b>" + props.WATERSHED + " </b><br>";
+                        content += "Park District: <b>" + props.PARKDISTRI + " </b><br>";
+                        content += "State: <b>" + props.STATE + " </b><br>";
+                        layer.bindTooltip(content,{className: 'tooltip'})
                 }
             }).addTo(map);
 
@@ -317,16 +300,11 @@ Add detail here.
               position: 'topright'
           });
 
-          console.log('Im here');
-
           legendControl.onAdd = function(map) {
-
               //create a new division element with class of 'legend'
               var legend = L.DomUtil.create('div', 'legend');
               return legend;
-
           };
-
           legendControl.addTo(map);
 
           // select and populate the heading, creating an unordered list for the fish types
@@ -334,11 +312,11 @@ Add detail here.
 //****************
 //*** The following part of the legend seems like a hot mess
 //****************
-        var fishLegend = '<li><span style="background:' + '#D00523' + '"></span> ' + "Rainbow";
-            fishLegend = fishLegend + '<li><span style="background:' + '#072DD3' + '"></span> ' + "Brook";
+        var fishLegend = '<li><span style="background:' + '#072DD3' + '"></span> ' + "Brook";
+            fishLegend = fishLegend + '<li><span style="background:' + '#55D2F1' + '"></span> ' + "Brook, Brown";
+            fishLegend = fishLegend + '<li><span style="background:' + '#D00523' + '"></span> ' + "Rainbow";
             fishLegend = fishLegend + '<li><span style="background:' + '#9E4B1E' + '"></span> ' + "Rainbow, Brown";
             fishLegend = fishLegend + '<li><span style="background:' + '#ff16fb' + '"></span> ' + "Rainbow, Brook";
-            fishLegend = fishLegend + '<li><span style="background:' + '#55D2F1' + '"></span> ' + "Brook, Brown";
             fishLegend = fishLegend + '<li><span style="background:' + '#FD8624' + '"></span> ' + "Rainbow, Brook, Brown";
             fishLegend = fishLegend + '<li><hr>';
             fishLegend = fishLegend + '<li><span style="background:' + '"><img src="images/parking_icon.png" style="width:18px;height:18px;"></span> ' + "Parking";
