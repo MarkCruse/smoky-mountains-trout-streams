@@ -139,9 +139,7 @@ Add detail here.
         In the past 100+ years, the brook trout, the only trout native to the southern Appalachian Mountains, began to dimish due to many environmental 
         changes. The brook trout was once <br>widespread in Great Smoky Mountains National Park (GRSM), occupying small, swift, high elevation mountain 
         streams as well as larger rivers down to elevations of 1,600 feet. <br>In the 1950s and continuing for 25 years, various other trout species were 
-        introduced into the streams of the GRSM. Non-native rainbow trout from the western United States, <br>brown trout from Europe, and brook trout from 
-        the northern United States were stocked in the streams. The introduction of these fish further complicated matters for the native <br> brook trout 
-        and today most surviving brook trout have become confined to marginal streams above 3,500 feet in elevation. This map depicts the distribution of trout taken in 2015.
+        introduced into the streams of the GRSM due to declining brook trout numbers. Non-native rainbow trout <br>from the western United States, brown trout from Europe, and brook trout from the northern United States were stocked in the streams. The introduction of these fish further complicated <br>matters for the native brook trout and today most surviving brook trout have become confined to marginal streams above 3,500 feet in elevation. This map depicts the distribution of trout species in GRSM as recorded in 2015.
         <br/><br/>
 
         <b>Data source:&nbsp;&nbsp;</b><a href="https://grsm-nps.opendata.arcgis.com/">National Park Service - Great Smoky Mountains</a>
@@ -239,7 +237,7 @@ Add detail here.
                     var props = layer.feature.properties;       //assign layer properties to props
                     var content = "<b>"+ props.STREAMNAME + "</b><br>";
                         content += "Fish type(s): " + props.EVENTTYPE + " <br>";
-                        content += "Elevation: "+props.ELEVATION.toLocaleString() +" ft<br>";
+                        content += "Elevation: "+props.ELEVATION.toLocaleString().split('.')[0] +" ft<br>";
                         content += "Watershed: " + props.WATERSHED + " <br>";
                         content += "Park District: " + props.PARKDISTRI + " <br>";
                         content += "State: " + props.STATE + " <br>";
