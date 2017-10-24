@@ -23,7 +23,7 @@ Add detail here.
             top: 80px;
             bottom: 0;*/
             background: rgba(0,0,0,.75);
-            width: 1100px;
+            width: 960px;
             height: 500px;
             margin: 10px auto;
             border: 1px solid #d3d3d3;
@@ -110,10 +110,7 @@ Add detail here.
         <h1>Great Smoky Mountains Trout Streams</h1>
     </header>
     <div id="map"></div>
-    <!-- <div id="legend">
-        <h3>Map symbols</h3>
-   </div> -->
-   <hr>>
+   <hr>
    <p>
         In the past 100+ years, the brook trout, the only trout native to the southern Appalachian Mountains, began to dimish due to many environmental 
         changes. The brook trout was once <br>widespread in Great Smoky Mountains National Park (GRSM), occupying small, swift, high elevation mountain 
@@ -178,22 +175,21 @@ Add detail here.
         // AJAX calls to load data
         $.when(
             $.getJSON('data/grsm_carto_mask.json'),
-            $.getJSON('data/grsm_fish.json'),
-            $.getJSON('data/grsm_fish.json'),
-            $.getJSON('data/grsm_trails.json'),
+            $.getJSON('data/grsm_fish_ms.json'),
+            $.getJSON('data/grsm_trails_ms.json'),
             $.getJSON('data/grsm_boundary.json'),
             $.getJSON('data/grsm_parking.json'),
 
         ).done
-        (function (mask, troutStream, fish, trails, parkBounds, parking) {
-            drawMap(mask, troutStream, fish, trails, parkBounds, parking);
+        (function (mask, fish, trails, parkBounds, parking) {
+            drawMap(mask, fish, trails, parkBounds, parking);
             }
         );
 
         drawLegend();
         // ---------------------------------------------------------------
 
-        function drawMap(maskData, troutStreamBuffer, fishData, trailsData, parkBoundsData, parkingData) {
+        function drawMap(maskData, fishData, trailsData, parkBoundsData, parkingData) {
             //load the data to the map rendering the color and styles for each in the particular order below
 
             L.geoJson(maskData, {
@@ -202,7 +198,7 @@ Add detail here.
 
             // troutStreamBuffer provides an invisible layer around the streams to make it easier for the tooltip info to display
             // so that the end-user does not have to put the mouse pointer exactly on the stream.
-            L.geoJson(troutStreamBuffer, {
+            L.geoJson(fishData, {
                 style: function(feature){
                     return {
                         fillOpacity: 0,
