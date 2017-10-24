@@ -6,3 +6,9 @@ from within the new project-fiels dir/
   568  ogr2ogr -f "GeoJSON" ../data/fish.json -t_srs "EPSG:4326" FISH_DISTRIBUTION_2015/FISH_DISTRIBUTION_2015.shp
   569  ogr2ogr -f "GeoJSON" ../data/fish2.json -t_srs "EPSG:4326" FISH_DISTRIBUTION_2015.zip
   570  history > history.txt
+
+
+
+reduced JSON file sizes with mapshaper command:
+
+mapshaper grsm_trails.json -simplify 20% -o format=geojson precision=.00001 grsm_trails_ms.json

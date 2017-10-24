@@ -23,7 +23,7 @@ Add detail here.
             top: 80px;
             bottom: 0;*/
             background: rgba(0,0,0,.75);
-            width: 1100px;
+            width: 960px;
             height: 500px;
             margin: 10px auto;
             border: 1px solid #d3d3d3;
@@ -31,23 +31,33 @@ Add detail here.
         header{
             border-bottom: 1px solid white;
         }        
-  
-        a {
-            color: rgb(74, 132, 187); }
-
-        p {
-            position: absolute;
-            top: 600px;
-            left: 65px;
-            font-size: .9em;
+        h1 {
+            width: 960px;
+            margin: 18px auto 18px auto;
+            font-weight: normal;
+            color: white;
+        }
+        #main {
+            width: 960px;
+            margin: 18px auto 18px auto;
+        }
+        #main p {
+            font-size: 1.1em;
             font-weight: 80;
             color: #fffcfb;
             line-height: 1.3em;
+            columns: 2;
+            column-gap: 4em;
+            column-rule: 1px dashed #dadada;
         }
-        h1 {
-            margin: 18px 0 18px 18px;
-            font-weight: normal;
+        #main ul {
             color: white;
+        }
+        #main li {
+            margin-bottom: 12px;
+        }
+        #main a {
+            color: rgb(74, 132, 187); 
         }
         .tooltip {
             background: rgba(193, 211, 153, 0.966);;
@@ -110,31 +120,23 @@ Add detail here.
         <h1>Great Smoky Mountains Trout Streams</h1>
     </header>
     <div id="map"></div>
-    <!-- <div id="legend">
-        <h3>Map symbols</h3>
-   </div> -->
-   <hr>>
-   <p>
-        In the past 100+ years, the brook trout, the only trout native to the southern Appalachian Mountains, began to dimish due to many environmental 
-        changes. The brook trout was once <br>widespread in Great Smoky Mountains National Park (GRSM), occupying small, swift, high elevation mountain 
-        streams as well as larger rivers down to elevations of 1,600 feet. <br>In the 1950s and continuing for 25 years, various other trout species were 
-        introduced into the streams of the GRSM due to declining brook trout numbers. Non-native rainbow trout <br>from the western United States, brown trout from Europe, and brook trout from the northern United States were stocked in the streams. The introduction of these fish further complicated <br>matters for the native brook trout and today most surviving brook trout have become confined to marginal streams above 3,500 feet in elevation. This map depicts the distribution of trout species in GRSM as recorded in 2015.
-        <br/><br/>
+   <hr>
+   <div id="main">
+        <p>In the past 100+ years, the brook trout, the only trout native to the southern Appalachian Mountains, began to dimish due to many environmental changes. The brook trout was once widespread in Great Smoky Mountains National Park (GRSM), occupying small, swift, high elevation mountain streams as well as larger rivers down to elevations of 1,600 feet. In the 1950s and continuing for 25 years, various other trout species were introduced into the streams of the GRSM due to declining brook trout numbers. Non-native rainbow trout from the western United States, brown trout from Europe, and brook trout from the northern United States were stocked in the streams. The introduction of these fish further complicated matters for the native brook trout and today most surviving brook trout have become confined to marginal streams above 3,500 feet in elevation. This map depicts the distribution of trout species in GRSM as recorded in 2015.
+            </p>
+            <ul>
+                <li>Data source: <a href="https://grsm-nps.opendata.arcgis.com/">National Park Service - Great Smoky Mountains</a></li>
+                <li>Map designed by:</b>&nbsp;&nbsp;Mark Cruse &amp; Rich Donahue - October 2017</li>
+            </ul>
+    </div>
 
-        <b>Data source:&nbsp;&nbsp;</b><a href="https://grsm-nps.opendata.arcgis.com/">National Park Service - Great Smoky Mountains</a>
-        <br/><br/>
-        <b>Map designed by:</b>&nbsp;&nbsp;Mark Cruse & Rich Donahue - October 2017
-      </p>
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     
     <script>
 
-        var options = {
-        };
-
-        // create Leaflet map and apply options
-        var map = L.map('map', options);
+        // create Leaflet map
+        var map = L.map('map');
 
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
             attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -178,22 +180,21 @@ Add detail here.
         // AJAX calls to load data
         $.when(
             $.getJSON('data/grsm_carto_mask.json'),
-            $.getJSON('data/grsm_fish.json'),
-            $.getJSON('data/grsm_fish.json'),
-            $.getJSON('data/grsm_trails.json'),
+            $.getJSON('data/grsm_fish_ms.json'),
+            $.getJSON('data/grsm_trails_ms.json'),
             $.getJSON('data/grsm_boundary.json'),
             $.getJSON('data/grsm_parking.json'),
 
         ).done
-        (function (mask, troutStream, fish, trails, parkBounds, parking) {
-            drawMap(mask, troutStream, fish, trails, parkBounds, parking);
+        (function (mask, fish, trails, parkBounds, parking) {
+            drawMap(mask, fish, trails, parkBounds, parking);
             }
         );
 
         drawLegend();
         // ---------------------------------------------------------------
 
-        function drawMap(maskData, troutStreamBuffer, fishData, trailsData, parkBoundsData, parkingData) {
+        function drawMap(maskData, fishData, trailsData, parkBoundsData, parkingData) {
             //load the data to the map rendering the color and styles for each in the particular order below
 
             L.geoJson(maskData, {
@@ -202,7 +203,7 @@ Add detail here.
 
             // troutStreamBuffer provides an invisible layer around the streams to make it easier for the tooltip info to display
             // so that the end-user does not have to put the mouse pointer exactly on the stream.
-            L.geoJson(troutStreamBuffer, {
+            L.geoJson(fishData, {
                 style: function(feature){
                     return {
                         fillOpacity: 0,
