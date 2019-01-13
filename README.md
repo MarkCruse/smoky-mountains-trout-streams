@@ -3,8 +3,6 @@
 ## Map Purpose
 The map shows the distribution of various species of trout in the Great Smoky Mountains National Park. Streams are identifiable when hovering over the stream with the mouse pointer. The popup infobox displays stream name, fish type(s) present, the elevation of the stream, the watrshed, park district, and state. Nearby trail names and parking areas become visible upon zooming in on portions of the map.
 
-Map created in a collaborative effort between Mark Cruse and Rich Donahue.
-
 ## Data
 The majority of these datasets were found on [National Park Service - Great Smoky Mountains](https://grsm-nps.opendata.arcgis.com/).
 
