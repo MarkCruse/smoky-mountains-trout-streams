@@ -159,10 +159,15 @@ Add detail here.
             attributionControl: false
         });
 
-        L.tileLayer(
-            'https://api.mapbox.com/styles/v1/mdcruse/cl48knfjp003y14mzd4hx12t7/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWRjcnVzZSIsImEiOiJjanZvN25kaHQxdzAxNDhwZjM4NDNvMXV4In0.s4GSawMNB7Jo4Vf7LXKEew', {
-                maxZoom: 18,
-            }).addTo(map);
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+            tileSize: 512,
+            maxZoom: 18,
+            zoomOffset: -1,
+            id: 'mapbox/streets-v11',
+            accessToken: 'pk.eyJ1IjoibWRjcnVzZSIsImEiOiJjanZvN25kaHQxdzAxNDhwZjM4NDNvMXV4In0.s4GSawMNB7Jo4Vf7LXKEew'
+        }).addTo(map);
+
         const credits = L.control.attribution().addTo(map);
         credits.addAttribution(
             `© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a
