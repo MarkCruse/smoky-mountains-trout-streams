@@ -313,7 +313,7 @@ Add detail here.
             })
 
             map.on('zoomend', function () {
-                if (map.getZoom() >= 14) {
+                if (map.getZoom() >= 12) {
                     parking.addTo(map);
                 } else {
                     parking.removeFrom(map);
