@@ -15,32 +15,38 @@ Add detail here.
             margin: 0;
             padding: 0;
             font-family: sans-serif;
-            background: rgba(0,0,0,.9); /*set the background to a black*/
+            background: rgba(0, 0, 0, .9);
+            /*set the background to a black*/
         }
+
         #map {
             /*position: absolute;
             width: 100%;
             top: 80px;
             bottom: 0;*/
-            background: rgba(0,0,0,.75);
+            background: rgba(0, 0, 0, .75);
             width: 960px;
             height: 500px;
             margin: 10px auto;
             border: 1px solid #d3d3d3;
         }
-        header{
+
+        header {
             border-bottom: 1px solid white;
-        }        
+        }
+
         h1 {
             width: 960px;
             margin: 18px auto 18px auto;
             font-weight: normal;
             color: white;
         }
+
         #main {
             width: 960px;
             margin: 18px auto 18px auto;
         }
+
         #main p {
             font-size: 1.1em;
             font-weight: 80;
@@ -50,17 +56,22 @@ Add detail here.
             column-gap: 4em;
             column-rule: 1px dashed #dadada;
         }
+
         #main ul {
             color: white;
         }
+
         #main li {
             margin-bottom: 12px;
         }
+
         #main a {
-            color: rgb(74, 132, 187); 
+            color: rgb(74, 132, 187);
         }
+
         .tooltip {
-            background: rgba(193, 211, 153, 0.966);;
+            background: rgba(193, 211, 153, 0.966);
+            ;
             color: rgb(48, 5, 5);
             font-size: 1em;
 
@@ -110,8 +121,7 @@ Add detail here.
             float: left;
             font-size: 1.2em;
             margin-right: 10px;
-    		}
-
+        }
     </style>
 </head>
 
@@ -120,50 +130,64 @@ Add detail here.
         <h1>Great Smoky Mountains Trout Streams</h1>
     </header>
     <div id="map"></div>
-   <hr>
-   <div id="main">
-        <p>In the past 100+ years, the brook trout, the only trout native to the southern Appalachian Mountains, began to dimish due to many environmental changes. The brook trout was once widespread in Great Smoky Mountains National Park (GRSM), occupying small, swift, high elevation mountain streams as well as larger rivers down to elevations of 1,600 feet. In the 1950s and continuing for 25 years, various other trout species were introduced into the streams of the GRSM due to declining brook trout numbers. Non-native rainbow trout from the western United States, brown trout from Europe, and brook trout from the northern United States were stocked in the streams. The introduction of these fish further complicated matters for the native brook trout and today most surviving brook trout have become confined to marginal streams above 3,500 feet in elevation. This map depicts the distribution of trout species in GRSM as recorded in 2015.
-            </p>
-            <ul>
-                <li>Data source: <a href="https://grsm-nps.opendata.arcgis.com/">National Park Service - Great Smoky Mountains</a></li>
-                <li>Map designed by:</b>&nbsp;&nbsp;Mark Cruse - October 2017</li>
-            </ul>
+    <hr>
+    <div id="main">
+        <p>In the past 100+ years, the brook trout, the only trout native to the southern Appalachian Mountains, began
+            to dimish due to many environmental changes. The brook trout was once widespread in Great Smoky Mountains
+            National Park (GRSM), occupying small, swift, high elevation mountain streams as well as larger rivers down
+            to elevations of 1,600 feet. In the 1950s and continuing for 25 years, various other trout species were
+            introduced into the streams of the GRSM due to declining brook trout numbers. Non-native rainbow trout from
+            the western United States, brown trout from Europe, and brook trout from the northern United States were
+            stocked in the streams. The introduction of these fish further complicated matters for the native brook
+            trout and today most surviving brook trout have become confined to marginal streams above 3,500 feet in
+            elevation. This map depicts the distribution of trout species in GRSM as recorded in 2015.
+        </p>
+        <ul>
+            <li>Data source: <a href="https://grsm-nps.opendata.arcgis.com/">National Park Service - Great Smoky
+                    Mountains</a></li>
+            <li>Map designed by:</b>&nbsp;&nbsp;Mark Cruse - October 2017</li>
+        </ul>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
     <script>
+        // create Leaflet map 
+        var map = L.map('map', {
+            attributionControl: false
+        });
 
-        // create Leaflet map
-        var map = L.map('map');
-
-        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-            maxZoom: 18,
-            id: 'mapbox.streets',
-            accessToken: 'pk.eyJ1IjoibWRjcnVzZSIsImEiOiJjaXphYnhyaXMwMm1zMnFvOHVhanZtMGZ5In0.xnbrvIVE2IXBudC4OwuZtw'
-        }).addTo(map);
+        L.tileLayer(
+            'https://api.mapbox.com/styles/v1/mdcruse/cl48knfjp003y14mzd4hx12t7/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWRjcnVzZSIsImEiOiJjanZvN25kaHQxdzAxNDhwZjM4NDNvMXV4In0.s4GSawMNB7Jo4Vf7LXKEew', {
+                maxZoom: 18,
+            }).addTo(map);
+        const credits = L.control.attribution().addTo(map);
+        credits.addAttribution(
+            `© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a
+            href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>`
+        );
 
         // create custom icon
         var parkIcon = L.icon({
             iconUrl: 'images/parking_icon.png',
             iconSize: [20, 20], // size of the icon
             opacity: .2
-            });
+        });
 
 
         // **** Options for various layers - fish distribution, parkBounds, trails, parking
         var parkBoundsOptions = {
             fillOpacity: .3,
-            color: '#424140',       //blue
+            color: '#424140', //blue
             weight: 1.5,
             opacity: 1
         };
 
         var trailsOptions = {
-            color: '#a09273',       //brown
-            color: '#056010',       //green
+            color: '#a09273', //brown
+            color: '#056010', //green
             color: '#0E0E00',
             weight: .7,
             opacity: .9,
@@ -185,11 +209,9 @@ Add detail here.
             $.getJSON('data/grsm_boundary.json'),
             $.getJSON('data/grsm_parking.json'),
 
-        ).done
-        (function (mask, fish, trails, parkBounds, parking) {
+        ).done(function (mask, fish, trails, parkBounds, parking) {
             drawMap(mask, fish, trails, parkBounds, parking);
-            }
-        );
+        });
 
         drawLegend();
         // ---------------------------------------------------------------
@@ -204,7 +226,7 @@ Add detail here.
             // troutStreamBuffer provides an invisible layer around the streams to make it easier for the tooltip info to display
             // so that the end-user does not have to put the mouse pointer exactly on the stream.
             L.geoJson(fishData, {
-                style: function(feature){
+                style: function (feature) {
                     return {
                         fillOpacity: 0,
                         color: 'white',
@@ -212,26 +234,29 @@ Add detail here.
                         weight: 15
                     }
                 },
-                onEachFeature: function(feature, layer) {       //tooltip info
-                    var props = layer.feature.properties;       //assign layer properties to props
-                    if (props.STREAMNAME == null) {             //if stream name is null use Unknown
+                onEachFeature: function (feature, layer) { //tooltip info
+                    var props = layer.feature.properties; //assign layer properties to props
+                    if (props.STREAMNAME == null) { //if stream name is null use Unknown
                         props.STREAMNAME = 'Unknown';
-                    }                    
-                    if (props.PARKDISTRI == null) {             //if park district is null use Unknown
+                    }
+                    if (props.PARKDISTRI == null) { //if park district is null use Unknown
                         props.PARKDISTRI = 'Unknown';
                     }
                     var content = "Stream name: <b>" + props.STREAMNAME + "</b><br>";
-                        content += "Fish type(s): <b>" + props.EVENTTYPE + " </b><br>";
-                        content += "Elevation: <b>"+props.ELEVATION.toLocaleString().split('.')[0] +" ft</b><br>";
-                        content += "Watershed: <b>" + props.WATERSHED + " </b><br>";
-                        content += "Park District: <b>" + props.PARKDISTRI + " </b><br>";
-                        content += "State: <b>" + props.STATE + " </b><br>";
-                        layer.bindTooltip(content,{className: 'tooltip'})
+                    content += "Fish type(s): <b>" + props.EVENTTYPE + " </b><br>";
+                    content += "Elevation: <b>" + props.ELEVATION.toLocaleString().split('.')[0] +
+                        " ft</b><br>";
+                    content += "Watershed: <b>" + props.WATERSHED + " </b><br>";
+                    content += "Park District: <b>" + props.PARKDISTRI + " </b><br>";
+                    content += "State: <b>" + props.STATE + " </b><br>";
+                    layer.bindTooltip(content, {
+                        className: 'tooltip'
+                    })
                 }
             }).addTo(map);
 
-            L.geoJson(fishData, {           //colors the streams based on the tout types within
-                style: function(feature){
+            L.geoJson(fishData, { //colors the streams based on the tout types within
+                style: function (feature) {
                     return {
                         fillOpacity: 0,
                         color: getFishColor(feature.properties.EVENTTYPE),
@@ -241,20 +266,20 @@ Add detail here.
                 }
             }).addTo(map);
 
-            function getFishColor(fishType) {       //assigns a color to each fish or fish group identified in the data
+            function getFishColor(fishType) { //assigns a color to each fish or fish group identified in the data
                 //console.log(fishType)
-                if(fishType === "Rainbow") {
+                if (fishType === "Rainbow") {
                     return '#D00523';
-                } else if(fishType === "Brook"){
+                } else if (fishType === "Brook") {
                     return '#072DD3';
-                } else if(fishType === "Rainbow-Brown"){
-                        return '#9E4B1E';
-                } else if(fishType === "Rainbow-Brook"){
-                         return '#ff16fb';
-                } else if(fishType === "Brook-Brown"){
-                         return '#FD8624';
+                } else if (fishType === "Rainbow-Brown") {
+                    return '#9E4B1E';
+                } else if (fishType === "Rainbow-Brook") {
+                    return '#ff16fb';
+                } else if (fishType === "Brook-Brown") {
+                    return '#FD8624';
                 } else {
-                    return '#7A2C9F';   //Rainbow-Brook_Brown
+                    return '#7A2C9F'; //Rainbow-Brook_Brown
                 }
             }
 
@@ -263,7 +288,7 @@ Add detail here.
             }).addTo(map);
 
             var parkBounds = L.geoJson(parkBoundsData, {
-                 style: parkBoundsOptions
+                style: parkBoundsOptions
             }).addTo(map);
 
             // set map options dynamically from layer
@@ -273,11 +298,13 @@ Add detail here.
             map.setMaxZoom(map.getZoom() + 5);
 
             var parking = L.geoJson(parkingData, {
-                pointToLayer: function(feature, latlng) {
-                    return L.marker(latlng, {icon: parkIcon});
+                pointToLayer: function (feature, latlng) {
+                    return L.marker(latlng, {
+                        icon: parkIcon
+                    });
                 },
-                onEachFeature: function(feature, layer) {
-                    layer.on('mouseover', function() {
+                onEachFeature: function (feature, layer) {
+                    layer.on('mouseover', function () {
                         //console.log(layer.feature.properties)
                     });
                     layer.bindTooltip(feature.properties.LOC_NAME)
@@ -285,8 +312,8 @@ Add detail here.
 
             })
 
-            map.on('zoomend', function() {
-                if(map.getZoom() >= 14) {
+            map.on('zoomend', function () {
+                if (map.getZoom() >= 14) {
                     parking.addTo(map);
                 } else {
                     parking.removeFrom(map);
@@ -294,38 +321,41 @@ Add detail here.
             });
         }
 
-    // ********** Legend ***********
+        // ********** Legend ***********
         function drawLegend() {
-          //create a Leaflet control for the legend
-          var legendControl = L.control({
-              position: 'topright'
-          });
+            //create a Leaflet control for the legend
+            var legendControl = L.control({
+                position: 'topright'
+            });
 
-          legendControl.onAdd = function(map) {
-              //create a new division element with class of 'legend'
-              var legend = L.DomUtil.create('div', 'legend');
-              return legend;
-          };
-          legendControl.addTo(map);
+            legendControl.onAdd = function (map) {
+                //create a new division element with class of 'legend'
+                var legend = L.DomUtil.create('div', 'legend');
+                return legend;
+            };
+            legendControl.addTo(map);
 
-          // select and populate the heading, creating an unordered list for the fish types
-          var legend = $('.legend').html("<h3>Symbology</h3><ul>");
-//****************
-//*** The following part of the legend seems like a hot mess
-//****************
-        var fishLegend = '<li><span style="background:' + '#072DD3' + '"></span> ' + "Brook";
+            // select and populate the heading, creating an unordered list for the fish types
+            var legend = $('.legend').html("<h3>Symbology</h3><ul>");
+            //****************
+            //*** The following part of the legend seems like a hot mess
+            //****************
+            var fishLegend = '<li><span style="background:' + '#072DD3' + '"></span> ' + "Brook";
             fishLegend = fishLegend + '<li><span style="background:' + '#FD8624' + '"></span> ' + "Brook, Brown";
             fishLegend = fishLegend + '<li><span style="background:' + '#D00523' + '"></span> ' + "Rainbow";
             fishLegend = fishLegend + '<li><span style="background:' + '#9E4B1E' + '"></span> ' + "Rainbow, Brown";
             fishLegend = fishLegend + '<li><span style="background:' + '#ff16fb' + '"></span> ' + "Rainbow, Brook";
-            fishLegend = fishLegend + '<li><span style="background:' + '#7A2C9F' + '"></span> ' + "Rainbow, Brook, Brown";
+            fishLegend = fishLegend + '<li><span style="background:' + '#7A2C9F' + '"></span> ' +
+                "Rainbow, Brook, Brown";
             fishLegend = fishLegend + '<li><hr>';
-            fishLegend = fishLegend + '<li><span style="background:' + '"><img src="images/parking_icon.png" style="width:18px;height:18px;"></span> ' + "Parking";
-           // fishLegend = fishLegend + '<li><span style="background:' + parkIcon + '"></span> ' + "Trails";
-                            
-        $('.legend ul').append(fishLegend);
-        legend.append("</ul>");
+            fishLegend = fishLegend + '<li><span style="background:' +
+                '"><img src="images/parking_icon.png" style="width:18px;height:18px;"></span> ' + "Parking";
+            // fishLegend = fishLegend + '<li><span style="background:' + parkIcon + '"></span> ' + "Trails";
+
+            $('.legend ul').append(fishLegend);
+            legend.append("</ul>");
         }
     </script>
 </body>
+
 </html>
